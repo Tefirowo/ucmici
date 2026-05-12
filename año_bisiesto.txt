@@ -1,0 +1,13 @@
+Inicio
+  Entero año, mod_año4, mod_año100, mod_año400
+  Escribir "Introduzca un año"
+  Leer año
+  mod_año4 = año % 4
+  mod_año100 = año % 100
+  mod_año400 = año % 400
+  Si (mod_año4 == 0 Y mod_año100 != 0) O (mod_año400 == 0) Entonces
+    Escribir "El año ", año, " es bisiesto."
+  Sino
+    Escribir "El año ", año, " no es bisiesto."
+  FinSi
+Fin
