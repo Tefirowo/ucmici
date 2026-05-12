@@ -55,14 +55,13 @@ No le tengo miedo a que algo no funcione a la primera. Probar, fallar, ajustar y
 
 ```
 ucmici/
-├── README.md           ← estás aquí
-├── cursos/             ← trabajos y apuntes por asignatura
-│   ├── programacion/
-│   ├── bases-de-datos/
-│   └── ...
-├── proyectos/          ← proyectos personales o de la carrera
-├── arduino/            ← experimentos con hardware
-└── apuntes/            ← notas y recursos útiles
+├── README.md                   ← estás aquí
+├── cursos/                     ← trabajos y apuntes por asignatura
+│   ├── intro-a-la-compu/
+│   └── intro-a-la-ingenieria/
+├── proyectos/                  ← proyectos personales o de la carrera
+├── arduino/                    ← experimentos con hardware
+└── apuntes/                    ← notas y recursos útiles
 ```
 
 ---
