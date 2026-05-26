@@ -1,0 +1,86 @@
+Inicio
+    Entero codLibro, codIngresado, diasPrestamo, opcion, diasSuspension
+    Real multa
+    Cadena tituloLibro, categoriaLibro, estadoLibro, nombreEstudiante
+
+    codLibro = 101
+    tituloLibro = "Cálculo Diferencial"
+    categoriaLibro = "Matemáticas"
+    estadoLibro = "disponible"
+    nombreEstudiante = ""
+    opcion = 0
+
+    Mientras opcion != 4
+        Escribir "1. Prestar libro"
+        Escribir "2. Devolución del libro"
+        Escribir "3. Consultar disponibilidad"
+        Escribir "4. Salir"
+        Leer opcion
+
+        Si opcion == 1 Entonces
+            Escribir "Ingrese código del libro (1-1000)"
+            Leer codIngresado
+            Si (codIngresado < 1) O (codIngresado > 1000) Entonces
+                Escribir "Error: Código fuera de rango."
+            Sino
+                Si codIngresado == codLibro Entonces
+                    Si estadoLibro == "disponible" Entonces
+                        Escribir "Ingrese nombre del estudiante"
+                        Leer nombreEstudiante
+                        estadoLibro = "prestado"
+                        Escribir "Libro ", tituloLibro, " prestado con éxito a ", nombreEstudiante
+                    Sino
+                        Escribir "Error: El libro ya está prestado."
+                    FinSi
+                Sino
+                    Escribir "Error: El libro no existe."
+                FinSi
+            FinSi
+        FinSi
+
+        Si opcion == 2 Entonces
+            Escribir "Ingrese código del libro a devolver"
+            Leer codIngresado
+            Si codIngresado == codLibro Entonces
+                Si estadoLibro == "prestado" Entonces
+                    Escribir "Ingrese días que duró el préstamo"
+                    Leer diasPrestamo
+                    estadoLibro = "disponible"
+                    nombreEstudiante = ""
+                    Escribir "Libro ", tituloLibro, " liberado (disponible nuevamente)."
+                    Si diasPrestamo > 5 Entonces
+                        multa = (diasPrestamo - 5) * 1000.0
+                        diasSuspension = 15
+                        Escribir "Multa: $", multa
+                        Escribir "Suspensión: ", diasSuspension, " días."
+                    Sino
+                        Escribir "Devolución dentro del plazo. Sin multa."
+                    FinSi
+                Sino
+                    Escribir "Error: El libro no estaba prestado."
+                FinSi
+            Sino
+                Escribir "Error: Código incorrecto."
+            FinSi
+        FinSi
+
+        Si opcion == 3 Entonces
+            Escribir "Ingrese código del libro a consultar"
+            Leer codIngresado
+            Si codIngresado == codLibro Entonces
+                Escribir "Título: ", tituloLibro
+                Escribir "Categoría: ", categoriaLibro
+                Escribir "Estado: ", estadoLibro
+            Sino
+                Escribir "Error: Libro no encontrado."
+            FinSi
+        FinSi
+
+        Si (opcion != 1) Y (opcion != 2) Y (opcion != 3) Y (opcion != 4) Entonces
+            Escribir "Opción inválida. Intente nuevamente."
+        FinSi
+
+    FinMientras
+
+    Escribir "Sistema cerrado. ¡Hasta luego!"
+Fin
