@@ -1,0 +1,368 @@
+% ============================================================
+%  TORPEDO AVANZADO HORIZONTAL – CÁLCULO I (INF-112) | UCM
+%  Diseño de Ultra-Alta Densidad - 4 Páginas estrictas (LANDSCAPE)
+% ============================================================
+\documentclass[8pt,letterpaper,landscape]{extarticle}
+
+% ── Paquetes Críticos de Configuración ───────────────────────
+\usepackage[top=0.4cm,bottom=0.4cm,left=0.4cm,right=0.4cm,landscape]{geometry}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ── Paleta de Colores Académica ──────────────────────────────
+\definecolor{primary}{RGB}{15,45,100}
+\definecolor{secondary}{RGB}{45,95,170}
+\definecolor{accent}{RGB}{190,30,30}
+\definecolor{lightbg}{RGB}{235,242,255}
+\definecolor{darkgray}{RGB}{60,60,60}
+
+% ── Ajustes de Espaciado y Layout Ultra-Compacto ─────────────
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\setlength{\multicolsep}{2pt}
+\setlength{\columnsep}{6pt}
+\setlist{nosep,leftmargin=9pt,itemsep=0pt,topsep=0pt}
+\pagestyle{empty}
+
+% ── Macros de Bloques con Dimexpr ────────────────────────────
+\newcommand{\bloque}[1]{%
+  \vspace{2pt}%
+  \noindent\colorbox{primary}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
+    {\color{white}\bfseries\fontsize{7.5pt}{8.5pt}\selectfont\space #1}}%
+  \vspace{1pt}}
+
+\newcommand{\subbloque}[1]{%
+  \vspace{1pt}%
+  \noindent\colorbox{lightbg}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
+    {\color{primary}\bfseries\fontsize{7pt}{8pt}\selectfont\space #1}}%
+  \vspace{1pt}}
+
+\newcommand{\cajadestacada}[1]{%
+  \noindent\fcolorbox{accent}{white}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+    {\fontsize{7pt}{8pt}\selectfont #1}}%
+  \vspace{1pt}}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% ============================================================
+%  PÁGINA 1: LÓGICA Y DESIGUALDADES
+% ============================================================
+\noindent\colorbox{primary}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+  \centering\color{white}\bfseries\fontsize{8.5pt}{9.5pt}\selectfont
+  INF-112 CÁLCULO I \quad|\quad PÁGINA 1: LÓGICA, VALOR ABSOLUTO Y SUPREMO \quad|\quad UCM}}
+\vspace{2pt}
+
+\begin{multicols}{4} % 4 columnas en horizontal aprovechan mejor el ancho
+
+\bloque{1. Demostración por el Absurdo}
+\subbloque{Esquema General para Irracionales ($\sqrt{p}$)}
+\textbf{Objetivo:} Probar que si $p$ es primo, $\sqrt{p} \notin \mathbb{Q}$.
+\begin{enumerate}
+  \item \textbf{Hipótesis contraria:} Suponer que $\sqrt{p} \in \mathbb{Q}$. Existen $m, n \in \mathbb{Z}^+$ tales que $\sqrt{p} = \frac{m}{n}$ con $\gcd(m,n) = 1$ (fracción irreducible).
+  \item \textbf{Álgebra:} Elevar al cuadrado: $p = \frac{m^2}{n^2} \implies p \cdot n^2 = m^2$.
+  \item \textbf{Lema de Euclides:} Como $p \mid m^2$ y $p$ es primo $\implies p \mid m$. Por ende, existe $k \in \mathbb{Z}$ tal que $m = p \cdot k$.
+  \item \textbf{Sustitución:} $p \cdot n^2 = (p \cdot k)^2 \implies p \cdot n^2 = p^2 \cdot k^2 \implies n^2 = p \cdot k^2$.
+  \item \textbf{Segunda divisibilidad:} Se deduce que $p \mid n^2 \implies p \mid n$.
+  \item \textbf{Contradicción:} $p \mid m$ y $p \mid n$, lo cual contradice la hipótesis de que $\gcd(m,n) = 1$. $\therefore \sqrt{p} \notin \mathbb{Q}$. $\blacksquare$
+\end{enumerate}
+
+\cajadestacada{\textbf{Ejemplo Examen:} Demostrar $\sqrt{23} \notin \mathbb{Q}$.\\
+Supongamos $\sqrt{23}=\frac{m}{n}$ con $\gcd(m,n)=1$.\\
+$23n^2 = m^2 \implies 23 \mid m \implies m = 23k$.\\
+$23n^2 = 23^2 k^2 \implies n^2 = 23k^2 \implies 23 \mid n$.\\
+Contradice $\gcd(m,n)=1$. Luego, $\sqrt{23}$ es irracional.}
+
+\bloque{2. Valor Absoluto e Inecuaciones}
+\subbloque{Definición y Propiedades}
+$|A| = \begin{cases} A & \text{si } A \ge 0 \\ -A & \text{si } A < 0 \end{cases}$
+\begin{itemize}
+  \item $|A \cdot B| = |A| \cdot |B| \quad \bullet \quad \left|\frac{A}{B}\right| = \frac{|A|}{|B|}$
+  \item $|A + B| \le |A| + |B|$ (Desigualdad Triangular).
+  \item $|A| = \sqrt{A^2}$
+\end{itemize}
+
+\subbloque{Inecuaciones Fundamentales ($k > 0$)}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Inecuación} & \textbf{Forma Equivalente} \\ \midrule
+$|A| \le k$ & $-k \le A \le k \iff A \ge -k \;\land\; A \le k$ \\
+$|A| \ge k$ & $A \le -k \;\lor\; A \ge k$ \\ \bottomrule
+\end{tabular}
+\end{center}
+
+\subbloque{Método de Puntos Críticos (Racionales)}
+Para expresiones del tipo $\frac{P(x)}{Q(x)} \gtrless 0$:
+\begin{enumerate}
+  \item Factorizar por completo $P(x)$ y $Q(x)$ sobre $\mathbb{R}$.
+  \item Hallar las raíces reales de $P(x)$ y $Q(x)$ (puntos críticos).
+  \item Construir tabla de signos. \textcolor{accent}{\textbf{OJO:}} Los valores que anulan a $Q(x)$ llevan siempre intervalo abierto ($x \neq$ raíz de $Q$).
+\end{enumerate}
+
+\subbloque{Suma de Valores Absolutos}
+Para resolver $|f(x)| + |g(x)| \le c$:
+\begin{enumerate}
+  \item Igualar a cero cada argumento: $f(x)=0 \land g(x)=0$.
+  \item Definir los intervalos en la recta real.
+  \item Redefinir la inecuación en cada intervalo removiendo las barras según su signo local. Resolver e intersectar con el intervalo analizado. $S_{\text{total}} = \bigcup S_i$.
+\end{enumerate}
+
+\bloque{3. Axioma del Supremo y Acotación}
+\subbloque{Definiciones Globales ($A \subseteq \mathbb{R}, A \neq \emptyset$)}
+\begin{itemize}
+  \item \textbf{Cota Superior:} $M \in \mathbb{R}$ tal que $\forall a \in A, a \le M$.
+  \item \textbf{Cota Inferior:} $m \in \mathbb{R}$ tal que $\forall a \in A, m \le a$.
+  \item \textbf{Conjunto Acotado:} Posee cota superior e inferior.
+\end{itemize}
+
+\subbloque{Supremo ($\sup$) e Ínfimo ($\inf$)}
+\begin{itemize}
+  \item $\boldsymbol{s = \sup A}$: 1) $\forall a \in A, a \le s$. 2) $\forall \varepsilon > 0, \exists a_0 \in A : a_0 > s - \varepsilon$.
+  \item $\boldsymbol{i = \inf A}$: 1) $\forall a \in A, i \le a$. 2) $\forall \varepsilon > 0, \exists a_0 \in A : a_0 < i + \varepsilon$.
+\end{itemize}
+
+\subbloque{Máximo ($\max$) y Mínimo ($\min$)}
+\begin{itemize}
+  \item $\max A = s \iff s = \sup A \;\land\; s \in A$.
+  \item $\min A = i \iff i = \inf A \;\land\; i \in A$.
+\end{itemize}
+
+\cajadestacada{\textbf{Axioma del Supremo:} Todo subconjunto de $\mathbb{R}$ no vacío y acotado superiormente posee un supremo en $\mathbb{R}$.}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+%  PÁGINA 2: GEOMETRÍA ANALÍTICA Y CÓNICAS
+% ============================================================
+\noindent\colorbox{secondary}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+  \centering\color{white}\bfseries\fontsize{8.5pt}{9.5pt}\selectfont
+  INF-112 CÁLCULO I \quad|\quad PÁGINA 2: GEOMETRÍA ANALÍTICA Y CÓNICAS \quad|\quad UCM}}
+\vspace{2pt}
+
+\begin{multicols}{4}
+
+\bloque{4. La Recta en el Plano}
+\subbloque{Ecuaciones y Parámetros}
+\begin{itemize}
+  \item \textbf{Pendiente:} $m = \frac{y_2 - y_1}{x_2 - x_1}$
+  \item \textbf{Punto-Pendiente:} $y - y_1 = m(x - x_1)$
+  \item \textbf{General:} $Ax + By + C = 0 \implies m = -\frac{A}{B}$
+\end{itemize}
+\subbloque{Relaciones entre Rectas}
+\begin{itemize}
+  \item \textbf{Paralelas ($L_1 \parallel L_2$):} $m_1 = m_2$
+  \item \textbf{Perpendiculares ($L_1 \perp L_2$):} $m_1 \cdot m_2 = -1 \implies m_2 = -\frac{1}{m_1}$
+\end{itemize}
+
+\bloque{5. Circunferencia}
+\subbloque{Ecuación Canónica}
+$(x - h)^2 + (y - k)^2 = r^2 \implies \boldsymbol{C(h,k)}, \boldsymbol{r=\text{radio}}.$
+\subbloque{Ecuación General a Canónica}
+$x^2 + y^2 + Dx + Ey + F = 0 \implies h = -\frac{D}{2}, \;\; k = -\frac{E}{2}$
+\[ r = \frac{1}{2}\sqrt{D^2 + E^2 - 4F} \quad (\text{Requiere } D^2+E^2-4F > 0) \]
+
+\subbloque{Intersección de dos Circunferencias}
+Dadas $C_1: x^2+y^2+D_1x+E_1y+F_1 = 0$ y $C_2: x^2+y^2+D_2x+E_2y+F_2 = 0$:
+\cajadestacada{\textbf{Método:} Restar $C_1 - C_2$. Los términos cuadráticos se eliminan generando el \textbf{Eje Radical}: $(D_1-D_2)x + (E_1-E_2)y + (F_1-F_2) = 0$.\\
+Despejar una variable de esta recta, sustituirla en $C_1$ o $C_2$ y resolver la ecuación cuadrática resultante para hallar los puntos.}
+
+\bloque{6. Completación de Cuadrados}
+\cajadestacada{\[ ax^2 + bx = a\left(x + \frac{b}{2a}\right)^2 - \frac{b^2}{4a} \]}
+
+\bloque{7. Secciones Cónicas}
+\subbloque{1. Parábola}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Eje Focal} & \textbf{Ecuación Canónica} & \textbf{Dirección} \\ \midrule
+Horiz. & $(y-k)^2 = 4p(x-h)$ & $p>0 \to \text{Der}, p<0 \to \text{Izq}$ \\
+Vert. & $(x-h)^2 = 4p(y-k)$ & $p>0 \to \text{Arr}, p<0 \to \text{Aba}$ \\ \bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+  \item \textbf{Vértice:} $V(h,k)$. \textbf{Foco ($F$):} A distancia $|p|$ de $V$.
+  \item \textbf{Directriz ($D$):} Recta perpendicular al eje focal a distancia $|p|$ de $V$ (lado opuesto al foco).
+\end{itemize}
+
+\subbloque{2. Elipse}
+$\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1 \quad \text{con } a > b > 0$. Relación: $\boldsymbol{a^2 = b^2 + c^2}$
+\begin{itemize}
+  \item \textbf{Centro:} $C(h,k)$. \textbf{Eje mayor:} Horizontal.
+  \item \textbf{Vértices:} $V(h \pm a, k)$. \textbf{Focos:} $F(h \pm c, k)$.
+  \item Si $b > a$, el eje mayor es vertical ($V(h, k \pm b)$ y $F(h, k \pm c)$ con $b^2 = a^2+c^2$).
+\end{itemize}
+
+\subbloque{3. Hipérbola}
+\begin{itemize}
+  \item \textbf{Eje Horiz.:} $\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1$. Relación: $\boldsymbol{c^2 = a^2 + b^2}$.
+  Focos: $F(h \pm c, k)$. Vértices: $V(h \pm a, k)$.
+  \item \textbf{Eje Vert.:} $\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1$. Focos: $F(h, k \pm c)$.
+\end{itemize}
+\subbloque{Asíntotas de la Hipérbola}
+\cajadestacada{%
+\textbf{Eje Horizontal:} $y - k = \pm \frac{b}{a}(x - h)$ \\
+\textbf{Eje Vertical:} $y - k = \pm \frac{a}{b}(x - h)$%
+}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+%  PÁGINA 3: TRIGONOMETRÍA Y LÍMITES
+% ============================================================
+\noindent\colorbox{secondary}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+  \centering\color{white}\bfseries\fontsize{8.5pt}{9.5pt}\selectfont
+  INF-112 CÁLCULO I \quad|\quad PÁGINA 3: TRIGONOMETRÍA, LÍMITES Y CONTINUIDAD \quad|\quad UCM}}
+\vspace{2pt}
+
+\begin{multicols}{4}
+
+\bloque{8. Trigonometría Avanzada}
+\subbloque{Identidades de Suma de Senos en Triángulos}
+Si $\alpha + \beta + \gamma = \pi$ (ángulos interiores de un triángulo):
+\cajadestacada{\[ \sin^2 \alpha + \sin^2 \beta + \sin^2 \gamma = 4\sin \alpha \sin \beta \sin \gamma \]}
+\subbloque{Ley de Senos (Cerros y Funiculares)}
+Uso clave en topografía y fuerzas coplanares:
+\[ \frac{a}{\sin \alpha} = \frac{b}{\sin \beta} = \frac{c}{\sin \gamma} = 2R \]
+Donde $R$ es el radio de la circunferencia circunscrita.
+
+\bloque{9. Límites Notables}
+Variables evaluadas cuando $x \to 0$:
+\cajadestacada{%
+\begin{itemize}
+  \item $\displaystyle \lim_{x \to 0} \frac{\sin x}{x} = 1 \quad \bullet \quad \lim_{x \to 0} \frac{\tan x}{x} = 1$
+  \item $\displaystyle \lim_{x \to 0} \frac{1 - \cos(kx)}{x^2} = \frac{k^2}{2}$
+  \item $\displaystyle \lim_{x \to \infty} \left(1 + \frac{k}{x}\right)^x = e^k \quad \bullet \quad \lim_{x \to 0} \frac{e^x - 1}{x} = 1$
+\end{itemize}%
+}
+
+\bloque{10. Técnicas Analíticas de Límites}
+\subbloque{1. Racionalización (Conjugados)}
+Para raíces algebraicas, multiplicar numerador y denominador por el conjugado: $(\sqrt{A} - \sqrt{B})(\sqrt{A} + \sqrt{B}) = A - B$.
+
+\subbloque{2. División por la Mayor Potencia ($x \to \infty$)}
+Dividir cada término por $x^n$, donde $n$ es el mayor grado del denominador. Si $\text{gr}(P) = \text{gr}(Q)$, el límite es el cociente de coeficientes principales.
+
+\subbloque{3. Teorema del Sándwich (Acotamiento)}
+Si $g(x) \le f(x) \le h(x)$ cerca de $c$, y además $\displaystyle \lim_{x \to c} g(x) = \lim_{x \to c} h(x) = L \implies \lim_{x \to c} f(x) = L$.
+\textit{Uso común:} Funciones oscilantes acotadas (e.g., $-1 \le \sin(\frac{1}{x}) \le 1$).
+
+\bloque{11. Continuidad Analítica}
+\subbloque{Las 3 Condiciones Conceptuales}
+$f(x)$ es continua en $x = c$ si y solo si:
+\begin{enumerate}
+  \item $f(c)$ existe.
+  \item $\displaystyle \lim_{x \to c} f(x)$ existe $\iff \lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$.
+  \item $\displaystyle \lim_{x \to c} f(x) = f(c)$.
+\end{enumerate}
+
+\subbloque{Parámetros $a$ y $b$ en Funciones por Partes}
+Para garantizar continuidad en puntos de quiebre $x = c$:
+\cajadestacada{%
+\begin{enumerate}
+  \item Calcular $\displaystyle \lim_{x \to c^-} f(x)$ (rama izquierda).
+  \item Calcular $\displaystyle \lim_{x \to c^+} f(x)$ (rama derecha).
+  \item Igualar límites laterales: $\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$.
+  \item Resolver el sistema de ecuaciones lineales resultante.
+\end{enumerate}%
+}
+
+\end{multicols}
+\newpage
+
+% ============================================================
+%  PÁGINA 4: DERIVADAS Y ASÍNTOTAS
+% ============================================================
+\noindent\colorbox{secondary}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+  \centering\color{white}\bfseries\fontsize{8.5pt}{9.5pt}\selectfont
+  INF-112 CÁLCULO I \quad|\quad PÁGINA 4: DERIVADAS, ASÍNTOTAS Y OPTIMIZACIÓN \quad|\quad UCM}}
+\vspace{2pt}
+
+\begin{multicols}{4}
+
+\bloque{12. Análisis de Asíntotas}
+\subbloque{1. Asíntotas Verticales (AV)}
+La recta $x = a$ es AV si $\displaystyle \lim_{x \to a^\pm} f(x) = \pm\infty$. Candidatos: Puntos que anulan al denominador pero no al numerador.
+
+\subbloque{2. Asíntotas Horizontales (AH)}
+La recta $y = L$ es AH si $\displaystyle \lim_{x \to \pm\infty} f(x) = L$ (con $L \in \mathbb{R}$).
+
+\subbloque{3. Asíntotas Oblicuas (AO)}
+Existen si $\text{gr}(\text{Num}) = \text{gr}(\text{Den}) + 1$. Tienen la forma $\boldsymbol{y = mx + b}$.
+\cajadestacada{%
+\[ m = \lim_{x \to \pm\infty} \frac{f(x)}{x} \quad (m \neq 0, m \in \mathbb{R}) \]
+\[ b = \lim_{x \to \pm\infty} [f(x) - mx] \quad (b \in \mathbb{R}) \]%
+}
+\textit{Nota:} Si existe AH en una dirección, no hay AO en esa misma dirección.
+
+\bloque{13. Cálculo de Derivadas}
+\subbloque{Reglas Operacionales}
+\begin{itemize}
+  \item \textbf{Producto:} $(f \cdot g)' = f' \cdot g + f \cdot g'$
+  \item \textbf{Cociente:} $\left(\frac{f}{g}\right)' = \frac{f' \cdot g - f \cdot g'}{g^2}$
+  \item \textbf{Cadena:} $\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$
+\end{itemize}
+
+\subbloque{Derivadas Elementales}
+\begin{tabular}{@{}ll|ll@{}}
+\toprule
+\textbf{$f(x)$} & \textbf{$f'(x)$} & \textbf{$f(x)$} & \textbf{$f'(x)$} \\ \midrule
+$x^n$ & $n x^{n-1}$ & $e^x$ & $e^x$ \\
+$\ln x$ & $\frac{1}{x}$ & $\sin x$ & $\cos x$ \\
+$\cos x$ & $-\sin x$ & $\tan x$ & $\sec^2 x$ \\
+$\arctan x$ & $\frac{1}{1+x^2}$ & $\arcsin x$ & $\frac{1}{\sqrt{1-x^2}}$ \\ \bottomrule
+\end{tabular}
+
+\bloque{14. Derivación Implícita}
+Para curvas definidas por $F(x,y) = 0$:
+\begin{enumerate}
+  \item Derivar respecto a $x$ término a término.
+  \item Recordar regla de la cadena para $y$: $\frac{d}{dx}(y^n) = n y^{n-1} \cdot y'$.
+  \item Agrupar y despejar algebraicamente el término $y'$.
+\end{enumerate}
+
+\bloque{15. Recta Tangente y Normal}
+La pendiente de la tangente es $\boldsymbol{m_t = f'(x_0)}$.
+\cajadestacada{%
+\textbf{Ecuación Recta Tangente:}
+\[ y - y_0 = f'(x_0)(x - x_0) \]
+\textbf{Ecuación Recta Normal (Perpendicular):}
+\[ y - y_0 = -\frac{1}{f'(x_0)}(x - x_0) \]%
+}
+
+\bloque{16. Orden Superior y Criterios}
+\begin{itemize}
+  \item \textbf{Segunda Derivada ($f''(x)$):} Define concavidad.
+  \item **Criterio de la 2da Derivada ($f'(x_0) = 0$):**
+  1) Si $f''(x_0) < 0 \implies x_0$ es un **Máximo Local**.
+  2) Si $f''(x_0) > 0 \implies x_0$ es un **Mínimo Local**.
+  3) Si $f''(x_0) = 0 \implies$ No concluye (usar 1ra derivada).
+\end{itemize}
+
+\end{multicols}
+
+% ── Pie de Página Oficial ────────────────────────────────────
+\vfill
+\noindent\rule{\linewidth}{0.4pt}
+{\fontsize{6pt}{7pt}\selectfont\color{darkgray}
+\textbf{INF-112 Cálculo I} – Torpedo de Ultra-Alta Densidad (Formato Horizontal). UCM. Diseñado para optimización de lectura bajo presión cronometrada. Impresión recomendada al 100\% de escala.}
+
+% ============================================================
+\end{document}
+% ============================================================

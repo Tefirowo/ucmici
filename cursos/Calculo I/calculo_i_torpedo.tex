@@ -1,0 +1,186 @@
+\documentclass[8pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=0.5cm]{geometry}
+\usepackage{multicol}
+\usepackage[compact]{titlesec}
+\usepackage{enumitem}
+
+% Ajustes para títulos pequeños y compactos
+\titleformat{\section}[runin]{\normalfont\bfseries}{\thesection.}{0.5em}{}[.]
+\titlespacing*{\section}{0pt}{0.5ex plus 0.5ex minus 0.2ex}{0.5ex plus 0.2ex}
+\titleformat{\subsection}[runin]{\normalfont\itshape}{\thesubsection.}{0.5em}{}[.]
+\titlespacing*{\subsection}{0pt}{0.5ex plus 0.5ex minus 0.2ex}{0.5ex plus 0.2ex}
+
+\pagestyle{empty} % Sin números de página
+
+\begin{document}
+
+\begin{multicols*}{3}
+
+% =============================================================================
+% PÁGINA 1: LÓGICA Y DESIGUALDADES
+% =============================================================================
+\section*{LÓGICA Y DESIGUALDADES}
+
+\subsection*{Demostración por el Absurdo}
+Para probar que $p$ es irracional (ej. $\sqrt{2}$):
+\begin{enumerate}[label=\arabic*.]
+    \item Asumir que $p$ es racional: $p = a/b$, donde $a, b \in \mathbb{Z}$, $b \neq 0$, y $\text{mcd}(a,b)=1$.
+    \item Manipular la ecuación para llegar a una contradicción (ej. $a$ y $b$ son ambos pares).
+    \item Concluir que la suposición inicial es falsa, por lo tanto $p$ es irracional.
+\end{enumerate}
+
+\subsection*{Inecuaciones con Valor Absoluto}
+\begin{itemize}
+    \item $|A| \le k \iff -k \le A \le k$ (si $k \ge 0$)
+    \item $|A| \ge k \iff A \ge k \text{ o } A \le -k$ (si $k \ge 0$)
+    \item \textbf{Método de Puntos Críticos:}
+    \begin{enumerate}[label=\arabic*.]
+        \item Hallar raíces del numerador y denominador (para racionales) o valores que anulan los valores absolutos.
+        \item Ubicar puntos en la recta numérica y formar intervalos.
+        \item Evaluar el signo de la expresión en cada intervalo.
+        \item Seleccionar intervalos que satisfacen la inecuación.
+    \end{enumerate}
+\end{itemize}
+
+\subsection*{Axioma del Supremo}
+\begin{itemize}
+    \item \textbf{Cota Superior:} $M$ es cota superior de $S$ si $\forall x \in S, x \le M$.
+    \item \textbf{Cota Inferior:} $m$ es cota inferior de $S$ si $\forall x \in S, x \ge m$.
+    \item \textbf{Supremo (sup):} La menor de las cotas superiores. Si $\sup S \in S$, es el \textbf{Máximo}.
+    \item \textbf{Ínfimo (inf):} La mayor de las cotas inferiores. Si $\inf S \in S$, es el \textbf{Mínimo}.
+\end{itemize}
+
+\end{multicols*}
+\newpage
+\begin{multicols*}{3}
+
+% =============================================================================
+% PÁGINA 2: GEOMETRÍA ANALÍTICA Y CÓNICAS
+% =============================================================================
+\section*{GEOMETRÍA ANALÍTICA Y CÓNICAS}
+
+\subsection*{La Recta}
+\begin{itemize}
+    \item \textbf{Pendiente $m$:} $m = \frac{y_2 - y_1}{x_2 - x_1}$.
+    \item \textbf{Paralelismo:} $m_1 = m_2$.
+    \item \textbf{Perpendicularidad:} $m_1 \cdot m_2 = -1$.
+\end{itemize}
+
+\subsection*{Circunferencia}
+\begin{itemize}
+    \item \textbf{Ecuación Canónica:} $(x-h)^2 + (y-k)^2 = r^2$.
+    \item \textbf{Centro:} $(h, k)$. \textbf{Radio:} $r$.
+    \item \textbf{Intersección de dos circunferencias:}
+    \begin{enumerate}[label=\arabic*.]
+        \item Restar las ecuaciones generales para obtener una recta.
+        \item Sustituir la recta en una de las ecuaciones de la circunferencia.
+        \item Resolver la ecuación cuadrática resultante para hallar los puntos de intersección.
+    \end{enumerate}
+\end{itemize}
+
+\subsection*{Cónicas}
+\begin{itemize}
+    \item \textbf{Completación de Cuadrados:}
+    $ax^2+bx = a\left(x+\frac{b}{2a}\right)^2 - \frac{b^2}{4a}$.
+    \item \textbf{Parábola:}
+    \begin{itemize}
+        \item $(x-h)^2 = 4p(y-k)$ (abre hacia arriba/abajo)
+        \item $(y-k)^2 = 4p(x-h)$ (abre hacia derecha/izquierda)
+        \item \textbf{Vértice:} $(h,k)$. \textbf{Foco:} $(h, k+p)$ o $(h+p, k)$. \textbf{Directriz:} $y=k-p$ o $x=h-p$.
+    \end{itemize}
+    \item \textbf{Elipse:}
+    \begin{itemize}
+        \item $\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1$ (eje mayor horizontal)
+        \item $\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1$ (eje mayor vertical)
+        \item $c^2 = a^2 - b^2$. \textbf{Centro:} $(h,k)$. \textbf{Focos:} $(h \pm c, k)$ o $(h, k \pm c)$. \textbf{Vértices:} $(h \pm a, k)$ o $(h, k \pm a)$.
+    \end{itemize}
+    \item \textbf{Hipérbola:}
+    \begin{itemize}
+        \item $\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1$ (eje transverso horizontal)
+        \item $\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1$ (eje transverso vertical)
+        \item $c^2 = a^2 + b^2$. \textbf{Centro:} $(h,k)$. \textbf{Focos:} $(h \pm c, k)$ o $(h, k \pm c)$. \textbf{Vértices:} $(h \pm a, k)$ o $(h, k \pm a)$.
+        \item \textbf{Asíntotas:} $y-k = \pm \frac{b}{a}(x-h)$ (horizontal) o $y-k = \pm \frac{a}{b}(x-h)$ (vertical).
+    \end{itemize}
+\end{itemize}
+
+\end{multicols*}
+\newpage
+\begin{multicols*}{3}
+
+% =============================================================================
+% PÁGINA 3: TRIGONOMETRÍA Y LÍMITES
+% =============================================================================
+\section*{TRIGONOMETRÍA Y LÍMITES}
+
+\subsection*{Trigonometría}
+\begin{itemize}
+    \item \textbf{Identidad de la suma de senos:}
+    $\sin^2\alpha + \sin^2\beta + \sin^2\gamma = 4\sin\alpha\sin\beta\sin\gamma$ (para $\alpha+\beta+\gamma=\pi$).
+    \item \textbf{Ley de Senos:}
+    $\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$. Útil para problemas de funiculares/cerros.
+\end{itemize}
+
+\subsection*{Límites Notables}
+\begin{itemize}
+    \item $\lim_{x\to 0} \frac{\sin x}{x} = 1$
+    \item $\lim_{x\to 0} \frac{1 - \cos(kx)}{x^2} = \frac{k^2}{2}$
+\end{itemize}
+
+\subsection*{Técnicas de Límites}
+\begin{itemize}
+    \item \textbf{Racionalización:} Multiplicar por el conjugado para eliminar raíces.
+    \item \textbf{División por la mayor potencia (para $x \to \infty$):}
+    Dividir numerador y denominador por la mayor potencia de $x$.
+    \item \textbf{Teorema del Sándwich (o de Compresión):}
+    Si $g(x) \le f(x) \le h(x)$ para todo $x$ en un intervalo abierto que contiene a $c$ (excepto posiblemente en $c$), y $\lim_{x\to c} g(x) = L = \lim_{x\to c} h(x)$, entonces $\lim_{x\to c} f(x) = L$.
+\end{itemize}
+
+\subsection*{Continuidad en un Punto $c$}
+Una función $f(x)$ es continua en $c$ si se cumplen las 3 condiciones:
+\begin{enumerate}[label=\arabic*.]
+    \item $f(c)$ está definida.
+    \item $\lim_{x\to c} f(x)$ existe.
+    \item $\lim_{x\to c} f(x) = f(c)$.
+\end{enumerate}
+\textbf{Para funciones por partes:} Igualar los límites laterales en los puntos de quiebre para hallar parámetros $a, b$.
+
+\end{multicols*}
+\newpage
+\begin{multicols*}{3}
+
+% =============================================================================
+% PÁGINA 4: DERIVADAS Y ASÍNTOTAS
+% =============================================================================
+\section*{DERIVADAS Y ASÍNTOTAS}
+
+\subsection*{Análisis de Asíntotas}
+\begin{itemize}
+    \item \textbf{Verticales:} $x=c$ si $\lim_{x\to c^\pm} f(x) = \pm \infty$. Ocurre cuando el denominador es cero y el numerador no.
+    \item \textbf{Horizontales:} $y=L$ si $\lim_{x\to \pm \infty} f(x) = L$.
+    \item \textbf{Oblicuas:} $y=mx+b$.
+    \begin{itemize}
+        \item $m = \lim_{x\to \pm \infty} \frac{f(x)}{x}$
+        \item $b = \lim_{x\to \pm \infty} (f(x) - mx)$
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Derivadas}
+\begin{itemize}
+    \item \textbf{Regla del Producto:} $(uv)' = u'v + uv'$.
+    \item \textbf{Regla del Cociente:} $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$.
+    \item \textbf{Regla de la Cadena:} $(f(g(x)))' = f'(g(x)) \cdot g'(x)$.
+    \item \textbf{Derivación Implícita:} Derivar ambos lados de la ecuación con respecto a $x$, tratando $y$ como función de $x$ ($y'$).
+    \item \textbf{Derivadas de Orden Superior:} $y'', y'''$, etc.
+\end{itemize}
+
+\subsection*{Recta Tangente}
+La ecuación de la recta tangente a $f(x)$ en el punto $(x_0, y_0)$ es:
+$y - y_0 = f'(x_0)(x - x_0)$.
+
+\end{multicols*}
+
+\end{document}
