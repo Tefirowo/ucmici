@@ -1,0 +1,16 @@
+-= Datos usuario =-
+Edad: 19
+Nombre: Nacha
+Año nacimiento: 2007
+-= Datos usuario =-
+Edad: 90
+Nombre: Mia
+Año nacimiento: 1936
+-= Datos usuario =-
+Edad: 37824
+Nombre: Hunter_Schafer
+Año nacimiento: -35798
+-= Datos usuario =-
+Edad: 462161696
+Nombre: Hola\0cuatro
+Año nacimiento: -462159670
