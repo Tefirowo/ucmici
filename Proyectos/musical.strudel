@@ -1,0 +1,6 @@
+setcpm(90)
+
+s(`<[bd bd sd bd sd sd bd sd]
+,
+[hh hh hh hh hh hh]
+>`)

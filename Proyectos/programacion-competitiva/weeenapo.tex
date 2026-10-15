@@ -1,0 +1,963 @@
+\documentclass[10pt, a4paper, twocolumn]{article}
+
+% --- PAQUETES DE FORMATO Y DISEÑO ---
+\usepackage[utf8]{utf8x}
+\usepackage[margin=1cm, top=1.2cm, bottom=1.2cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% --- CONFIGURACIÓN DE PÁGINA Y FUENTES ---
+\pagestyle{plain}
+\setlist{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt}
+
+% --- CONFIGURACIÓN DE LISTINGS (C++) ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+\lstdefinestyle{cppstyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\tiny,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=4pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=cppstyle}
+
+% --- FORMATO DE TÍTULOS ---
+\titleformat{\section}{\large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\small\bfseries}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titlespacing*{\subsection}{0pt}{3pt}{1pt}
+\titlespacing*{\subsubsection}{0pt}{2pt}{1pt}
+
+\begin{document}
+
+\title{\textbf{ACM-ICPC Cheat Sheet (C++ Contest Reference)}}
+\author{Orange Juice Reference Document}
+\date{\today}
+\maketitle
+
+\section{Basic}
+
+\subsection{1.1 C++ Solution Template}
+Standard competitive programming setup including Fast I/O, common header includes, DEBUG macros for variable tracing, and compilation flags for GCC.
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+#include <stdio.h>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <cstring>
+#include <cmath>
+#include <algorithm>
+#include <climits>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <unordered_map>
+#include <cassert>
+
+#ifdef DEBUG
+#define SHOW(x) {cout << __LINE__ << ":\t"; {x} cout << endl;}
+#define $(x) {cout << #x << " = " << x << ", ";}
+#define REACH_HERE { printf("%d:\tREACH_HERE\n", __LINE__); }
+#define PRINT(s, ...) { printf("%d:\t", __LINE__); printf(s, ##__VA_ARGS__); } 
+#define PRINTLN(s, ...) { printf("%d:\t", __LINE__); printf(s, ##__VA_ARGS__); printf("\n"); }
+#else
+#define SHOW(x) {}
+#define $(x) {}
+#define REACH_HERE {}
+#define PRINT(s, ...) {} 
+#define PRINTLN(s, ...) {}
+#endif
+
+const double E = 1e-8;
+const double PI = acos(-1);
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+
+    int a = 10, b = 10;
+    SHOW( $(a) $(b) )
+
+    PRINTLN("Hello %d", a)
+}
+\end{lstlisting}
+
+\subsection{1.2 Strings}
+Basic C-string and C++ \texttt{std::string} conversions and input processing tricks.
+\begin{lstlisting}[language=C++]
+string a;
+getline(cin, a);
+cout << a << endl;
+char target[1024];
+strcpy(target, cppstr.c_str());
+char s[12];
+gets(s);   // till new line or EOF.
+string target = string(arr);
+\end{lstlisting}
+
+\subsection{1.3 STL Algorithm}
+
+\subsubsection{1.3.1 Permutation}
+Generates next lexicographical permutation. Useful for brute-force over small sets ($N \le 10$).
+\begin{lstlisting}[language=C++]
+bool next_permutation (BidirectionalIterator first, BidirectionalIterator last);
+bool next_permutation (BidirectionalIterator first, BidirectionalIterator last, Compare comp);
+do {
+    std::cout << myints[0] << ' ' << myints[1] << ' ' << myints[2] << '\n';
+} while ( std::next_permutation(myints,myints+3) );
+\end{lstlisting}
+
+\subsubsection{1.3.2 Binary Search \& Lower Bound}
+\texttt{lower\_bound} returns an iterator to the first element not less than val.
+\begin{lstlisting}[language=C++]
+bool binary_search (ForwardIterator first, ForwardIterator last, const T& val, Compare comp);
+ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last, const T& val, Compare comp);
+\end{lstlisting}
+
+\subsubsection{1.3.4 Swap}
+\begin{lstlisting}[language=C++]
+void swap (T& a, T& b);
+void iter_swap (ForwardIterator1 a, ForwardIterator2 b);
+\end{lstlisting}
+
+\subsubsection{1.3.5 Heap}
+STL inline heap transformations on raw random access iterators (vectors/arrays).
+\begin{lstlisting}[language=C++]
+void make_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+void pop_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+void push_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+void sort_heap (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+\end{lstlisting}
+
+\subsubsection{1.3.6 Sort}
+\begin{lstlisting}[language=C++]
+void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+void stable_sort ( RandomAccessIterator first, RandomAccessIterator last, Compare comp );
+\end{lstlisting}
+
+\subsubsection{1.3.7 Compare Custom Implementations}
+Multiple ways to pass custom comparison criteria to containers and algorithms.
+\begin{lstlisting}[language=C++]
+// Lambda expression
+auto cmp = [](const T& a, const T& b) { return true; };
+set<T, decltype(cmp)> a_set_with_customized_comparator(cmp);
+
+// Compare function
+bool cmp (int i,int j) { return (i<j); }
+set<int, bool (*)(int, int)> s(cmp);
+
+// Define operator <()
+struct Edge {
+   int from, to, weight;
+   bool operator<(Edge that) const {
+        return weight > that.weight;
+    }
+};
+
+// Define operator()()
+vector<int> occurrences;
+struct cmp {
+    bool operator()(int a, int b) {
+        return occurrences[a] < occurrences[b];
+    }
+};
+set<int, cmp> s;
+priority_queue<int, vector<int>, cmp> pq;
+\end{lstlisting}
+
+\subsection{1.4 STL Containers}
+
+\subsubsection{1.4.1 Map \& Unordered Map}
+Ordered Red-Black Tree vs Hash Map usage.
+\begin{lstlisting}[language=C++]
+template < class Key, class T, class Compare = less<Key>, class Alloc = allocator<pair<const Key,T> > > class map;
+template < class Key, class T, class Hash = hash<Key>, class Pred = equal_to<Key>, class Alloc = allocator< pair<const Key,T> > > class unordered_map;
+\end{lstlisting}
+
+\subsubsection{1.4.3 - 1.4.7 Vector, Queue, Deque, Stack}
+\begin{lstlisting}[language=C++]
+// Vector
+std::vector<int> second (4,100);
+
+// Queue
+queue<int> my_queue;
+queue<int, list<int> > my_queue (my_list);
+
+// Stack
+stack<int, vector<int> > my_stack (my_data);
+\end{lstlisting}
+
+\subsubsection{1.4.8 Priority Queue \& Array Min-Max Heap}
+Priority queue initialization and custom min-max heap array implementation.
+\begin{lstlisting}[language=C++]
+priority_queue<int> my_priority_queue;
+priority_queue<int, vector<int>, greater<int> > two_priority_queue;
+
+struct HEAP {
+     int arr[127];
+     int size;
+};
+void insert(HEAP *h,int n){
+       int sz = h->size++;
+       while(sz>0){
+            if(n < h->arr[(sz-1)/2]){
+                h->arr[sz] = h->arr[(sz-1)/2];
+                sz = (sz-1)/2;
+            }else{
+                h->arr[sz] = n;
+                return;
+            }
+       }
+       h->arr[0] = n;
+}
+void delete_heap(HEAP *h){
+       h->size--;
+       h->arr[0] = h->arr[h->size];
+       h->arr[h->size] = 0;
+       int i = 1,cv = h->arr[0];
+       while(i < h->size){
+               if(i < h->size-1 && h->arr[i] > h->arr[i+1])
+                      i++;
+               if(h->arr[i] < cv){
+                      h->arr[(i-1)/2] = h->arr[i];
+                      h->arr[i] = cv;
+                      i = i*2 + 1;
+               }else{
+                      return;
+               }
+       }
+}
+\end{lstlisting}
+
+\section{2. Advanced Data Structures}
+
+\subsection{2.2 Tree}
+
+\subsubsection{2.2.1 Pointer Jumping (Binary Lifting)}
+Preprocessing: $O(N \log N)$, Query: $O(\log N)$. Used for finding $K$-th ancestor in a tree structure.
+\begin{lstlisting}[language=C++]
+#define MAX_NODE 100030
+#define MAX_NODE_LOG 20
+#define TREE_ROOT 0
+
+vector<int> g[MAX_NODE];
+vector<int> parent_jump[MAX_NODE];
+vector<int> path;
+
+void init_jump(int cur = TREE_ROOT) {
+	int d = 1;
+	while (true) {
+		int index = path.size() - d;
+		if (index < 0) break;
+		parent_jump[cur].push_back(path[index]);
+		d <<= 1;
+	}
+	path.push_back(cur);
+
+    for (int i = 0; i < g[cur].size(); i++) {
+        int nx = g[cur][i];
+        if (cur == TREE_ROOT || nx != parent_jump[cur][0]) {
+            init_jump(nx);
+        }
+    }
+    path.pop_back();
+}
+
+int go_up(int cur, int dis) {
+	int mask = 1, index = 0;
+	while (mask <= dis) {
+		if (dis & mask)
+			cur = parent_jump[cur][index];
+		mask <<= 1;
+		index++;
+	}
+	return cur;
+}
+\end{lstlisting}
+
+\subsubsection{2.2.2 Heavy-Light Decomposition (HLD)}
+Decomposes a tree into paths (chains) to query path operations using a segment tree in $O(\log^2 N)$.
+\begin{lstlisting}[language=C++]
+struct Graph {
+    map<pair<int, int>, int> node_edge;
+    struct Edge { int from, to; unsigned long long y; };
+    const static int MAXNODE = 200005;
+    vector<int> g[MAXNODE];
+    vector<Edge> edge;
+    int n, parent[MAXNODE], size[MAXNODE];
+
+    void init(int nn) {
+        n = nn;
+        for (int i = 0; i <= n; i++) g[i].clear();
+        edge.clear();
+    }
+
+    void add_e(int x, int y, unsigned long long val_y) {
+    	Edge e1 = {x, y, val_y};
+        g[x].push_back(edge.size());
+        node_edge[make_pair(x, y)] = edge.size();
+        edge.push_back(e1);
+        Edge e2 = {y, x, val_y};
+        g[y].push_back(edge.size());
+        node_edge[make_pair(y, x)] = edge.size();
+        edge.push_back(e2);
+    }
+
+    int size_parent(int cur) {
+        int& s = size[cur] = 1;
+        for (int i = 0; i < g[cur].size(); i++) {
+            int ie = g[cur][i];
+            const Edge& e = edge[ie];
+            int nx = e.to;
+            if (nx != parent[cur]) {
+                parent[nx] = cur;
+                s += size_parent(nx);    
+            }
+        }
+        return s;
+    }
+
+    struct Chain { int head, head_depth, len; };
+    vector<Chain> chain;
+    int chain_total, chain_no[MAXNODE], chain_pos[MAXNODE];
+
+    void hld(int cur, int depth) {
+        if (chain_total == chain.size()) {
+            Chain c = {cur, depth, 0};
+            chain.push_back(c);
+        }
+        chain_no[cur] = chain_total;
+        chain_pos[cur] = chain[chain_total].len++;
+        if (depth != 0 && g[cur].size() - 1 == 0) return;
+
+        int heavy = edge[g[cur][0]].to;
+        for (int i = 0; i < g[cur].size(); i++) {
+            int nx = edge[g[cur][i]].to;
+            if (heavy == parent[cur] || (nx != parent[cur] && size[nx] > size[heavy]))
+                heavy = nx;
+        }
+
+        hld(heavy, depth + 1);
+        for (int i = 0; i < g[cur].size(); i++) {
+            int nx = edge[g[cur][i]].to;
+            if (nx != parent[cur] && nx != heavy) {
+                chain_total++;
+                hld(nx, depth + 1);
+            }
+        }
+    }
+
+    void heavy_light_decomposition() {
+        int root = 1; parent[root] = -1;
+        size_parent(root);
+        chain_total = 0; chain.clear();
+        hld(root, 0); chain_total++;
+    }
+};
+\end{lstlisting}
+
+\subsubsection{2.2.3 Lowest Common Ancestor (LCA using RMQ)}
+Euler tour + RMQ technique to compute LCA in $O(1)$ after $O(N \log N)$ preprocessing.
+\begin{lstlisting}[language=C++]
+struct Graph {
+    struct Edge { int to, len; };
+    const static int MAXNODE = 100002;
+    vector<int> g[MAXNODE];
+    vector<Edge> edge;
+    int n, root = 0;
+
+    vector<int> dis_to_root, first_visit_time, visit;
+    int visit_counter;
+    vector<vector<int>> rmq;
+
+    int range_minimum_query(int l, int r) {
+        if (l > r) swap(l, r);
+        int interval_len = r - l;
+        int first_half = 1;
+        while ((1 << first_half) <= interval_len) first_half++;
+        first_half--;
+        int second_half = r - (1 << first_half) + 1;
+        if (first_visit_time[rmq[l][first_half]] < first_visit_time[rmq[second_half][first_half]])
+            return rmq[l][first_half];
+        return rmq[second_half][first_half];
+    }
+
+    int get_lca(int x, int y) {
+        return range_minimum_query(first_visit_time[x], first_visit_time[y]);
+    }
+
+    void euler_tour(int cur) {
+        visit[++visit_counter] = cur;
+        if (first_visit_time[cur] == 0) first_visit_time[cur] = visit_counter;
+        for (int ie : g[cur]) {
+            int nx = edge[ie].to, len = edge[ie].len;
+            if (first_visit_time[nx] == 0) {
+                dis_to_root[nx] = dis_to_root[cur] + len;
+                euler_tour(nx);
+                visit[++visit_counter] = cur;
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+\subsubsection{2.2.3.1 Tarjan's Off-line Algorithm for LCA}
+Offline algorithm to process all LCA queries in $O(N + M)$ using Disjoint Set Union (DSU).
+\begin{lstlisting}[language=C++]
+#define MAXHHH 50003
+#define MAXJJJ 75005
+
+struct Node {
+    vector<int> next, dist, query, lca, q_i;
+};
+Node g[MAXHHH];
+int father[MAXHHH], came[MAXHHH];
+
+int find(int x) { 
+    return father[x] == x ? x : father[x] = find(father[x]);
+}
+void mergeFirstInToSecond(int x, int y) { father[find(x)] = find(y); }
+
+void tarjan_lca_dfs(int cur) {
+    came[cur] = 1;
+    for (unsigned int i = 0; i < g[cur].next.size(); i++) {
+        int next = g[cur].next[i];
+        if (came[next] == 1) continue;
+        tarjan_lca_dfs(next);
+        mergeFirstInToSecond(cur, next);
+    }
+    for (unsigned int i = 0; i < g[cur].query.size(); i++) {
+        int that = g[cur].query[i];
+        if (came[that] == 0) continue;
+        g[cur].lca[i] = find(that);
+    }
+}
+\end{lstlisting}
+
+\subsubsection{2.2.4 Centroid Decomposition}
+Divide and conquer technique on trees. Useful for path queries passing through tree centroids.
+\begin{lstlisting}[language=C++]
+int dfs_size(int cur, int from) {
+    int total = 1;
+    for (int child : tree[cur].children) {
+        if (child == from) continue;
+        total += dfs_size(child, cur);
+    }
+    tree[cur].size = total;
+    return total;
+}
+
+void find_centroid(int cur, int from) {
+    if (tree[cur].size == 1) tree[cur].c_parent = from;
+    int max_child_size = 0, max_child;
+    for (int child : tree[cur].children) {
+        if (tree[child].c_parent != -1) continue;
+        if (tree[child].size > max_child_size) {
+            max_child_size = tree[child].size;
+            max_child = child;
+        }
+    }
+    if (max_child_size > tree[cur].size / 2) {
+        tree[max_child].size = tree[cur].size;
+        tree[cur].size -= max_child_size;
+        find_centroid(max_child, from);
+    } else {
+        tree[cur].c_parent = from;
+        if (from == 0) ctree_root = cur;
+        for (int child : tree[cur].children) {
+            if (tree[child].c_parent != -1) continue;
+            find_centroid(child, cur);
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{2.3 Trie / Trie Graph / AC Automaton}
+Aho-Corasick Automaton for multi-pattern string matching in $O(N_{len} + M_{article})$.
+\begin{lstlisting}[language=C++]
+#define HHH 1000002
+struct TrieNode {
+    char val; bool ended; int count, childCount;
+    int next[26], prev; bool suffixEnded; int suffix[26];
+    TrieNode() {
+        val = 0; memset(next, -1, sizeof(next));
+        ended = false; count = childCount = 0;
+        prev = -1; suffixEnded = false; memset(suffix, -1, sizeof(suffix));
+    }
+};
+
+struct Trie {
+    TrieNode node[HHH]; int size;
+    int add(string& s) {
+        int preIndex = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int& curIndex = node[preIndex].next[s[i] - 'a'];
+            if (curIndex == -1) curIndex = ++size;
+            node[curIndex].val = s[i];
+            node[curIndex].childCount++;
+            preIndex = curIndex;
+        }
+        node[preIndex].ended = true; node[preIndex].count++;
+        return preIndex;
+    }
+
+    void buildSuffix() {
+        queue<int> q;
+        for (int i = 0; i < 26; i++) {
+            int& next = node[0].next[i];
+            node[0].suffix[i] = 0;
+            if (next == -1) next = 0;
+            else { q.push(next); node[next].prev = 0; }
+        }
+        while (!q.empty()) {
+            int cur = q.front(); q.pop();
+            int prevSuffix = node[node[cur].prev].suffix[node[cur].val - 'a'];
+            if (node[prevSuffix].ended) node[cur].suffixEnded = true;
+            for (int i = 0; i < 26; i++) {
+                int& next = node[cur].next[i];
+                node[cur].suffix[i] = node[prevSuffix].next[i];
+                if (next == -1) next = node[cur].suffix[i];
+                else { q.push(next); node[next].prev = cur; }
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+\subsection{2.5 Suffix Array}
+Suffix Array construction in $O(N \log N)$ and LCP computation in $O(N)$.
+\begin{lstlisting}[language=C++]
+#define HH 100002
+string s;
+int rank_array[HH], rank_array_temp[HH], suffix_array[HH], suffix_array_temp[HH], counter[HH];
+
+void counting_sort(int k) {
+	memset(counter, 0, sizeof(counter));
+	int len = s.length();
+	for (int i = 0; i < len; i++) {
+		int old_rank = i + k < len ? rank_array[i + k] : 0;
+		counter[old_rank]++;
+	}
+	int accu = 0, largest_possible_value = max(256, len);
+	for (int i = 0; i < largest_possible_value; i++) {
+		int count_temp = counter[i];
+		counter[i] = accu;
+		accu += count_temp;
+	}
+	for (int i = 0; i < len; i++) {
+		int old_rank = suffix_array[i] + k < len ? rank_array[suffix_array[i] + k] : 0;
+		suffix_array_temp[counter[old_rank]++] = suffix_array[i];
+	}
+	memcpy(suffix_array, suffix_array_temp, sizeof(suffix_array));
+}
+
+void build_suffix_array() {
+	int len = s.length();
+	for (int i = 0; i < len; i++) rank_array[i] = s[i];
+	for (int i = 0; i < len; i++) suffix_array[i] = i;
+	for (int k = 1; k < len; k <<= 1) {
+		counting_sort(k); counting_sort(0);
+		int rank = 0;
+		rank_array_temp[suffix_array[0]] = rank;
+		for (int i = 1; i < len; i++) {
+			if (rank_array[suffix_array[i - 1]] != rank_array[suffix_array[i]] ||
+				rank_array[suffix_array[i] + k] != rank_array[suffix_array[i - 1] + k])
+				rank++;
+			rank_array_temp[suffix_array[i]] = rank;
+		}
+		memcpy(rank_array, rank_array_temp, sizeof(rank_array));
+	}
+}
+\end{lstlisting}
+
+\subsubsection{2.5.3 Longest Common Prefix (LCP)}
+\begin{lstlisting}[language=C++]
+int longest_common_prefix[HH], phi[HH], permuted_lcp[HH];
+
+void compute_lcp() {
+	int len = s.length();
+	phi[suffix_array[0]] = -1;
+	for (int i = 1; i < len; i++) phi[suffix_array[i]] = suffix_array[i - 1];
+	for (int i = 0, cur_lcp = 0; i < len; i++) {
+		if (phi[i] == -1) permuted_lcp[i] = 0;
+		else {
+			while (s[i + cur_lcp] == s[phi[i] + cur_lcp]) cur_lcp++;
+			permuted_lcp[i] = cur_lcp;
+			cur_lcp = max(cur_lcp - 1, 0);
+		}
+	}
+	for (int i = 0; i < len; i++) longest_common_prefix[i] = permuted_lcp[suffix_array[i]];
+}
+\end{lstlisting}
+
+\subsection{2.6 Binary Indexed Tree (Fenwick Tree)}
+Point updates and range prefix sum queries in $O(\log N)$.
+\begin{lstlisting}[language=C++]
+#define MAX_INDEX 100005
+int tree[MAX_INDEX + 1];
+
+int low_bit(int i) { return i & -i; }
+
+int query(int i) {
+    int ans = 0;
+    for (; i > 0; i -= low_bit(i)) ans += tree[i];
+    return ans;
+}
+
+void insert(int i, int value) {
+    for (; i <= MAX_INDEX; i += low_bit(i)) tree[i] += value;
+}
+\end{lstlisting}
+
+\subsection{2.7 Segment Tree (Lazy Propagation)}
+Range Query and Range Update in $O(\log N)$.
+\begin{lstlisting}[language=C++]
+struct SegmentTree {
+    struct Op { int h; };
+    struct Node { int l, r, h; bool lazy; Op op; };
+    vector<Node> node;
+
+    void init(int l, int r) {
+        int tree_range = r - l + 1, tree_size = 1;
+        while (tree_size <= tree_range) tree_size <<= 1;
+        tree_size <<= 1;
+        node.resize(tree_size);
+        node[1] = {l, r, 0, false, {0}};
+    }
+
+    int query(int xl, int xr, int i = 1) {
+        Node& cur = node[i];
+        if (cur.l == cur.r || (xl <= cur.l && cur.r <= xr)) return cur.h;
+        int lci = i * 2, rci = lci + 1;
+        if (cur.lazy) {
+            update(node[lci].l, node[lci].r, cur.op.h, lci);
+            update(node[rci].l, node[rci].r, cur.op.h, rci);
+            cur.lazy = false;
+        }
+        int ret = INT_MAX;
+        if (xl <= node[lci].r) ret = min(ret, query(xl, xr, lci));
+        if (node[rci].l <= xr) ret = min(ret, query(xl, xr, rci));
+        return ret;
+    }
+
+    void update(int xl, int xr, int xh, int i = 1) {
+        Node& cur = node[i];
+        if (cur.l == cur.r || (xl <= cur.l && cur.r <= xr)) {
+            cur.h = max(cur.h, xh);
+            cur.op.h = max(cur.op.h, xh);
+            cur.lazy = true;
+            return;
+        }
+        int lci = i * 2, rci = lci + 1;
+        if (xl <= node[lci].r) update(xl, xr, xh, lci);
+        if (node[rci].l <= xr) update(xl, xr, xh, rci);
+        cur.h = min(node[lci].h, node[rci].h);
+    }
+};
+\end{lstlisting}
+
+\subsection{2.8 Range Minimum Query RMQ (Sparse Table)}
+Static Range Minimum Queries in $O(1)$ query time after $O(N \log N)$ preprocessing.
+\begin{lstlisting}[language=C++]
+struct RMQ {
+    const static int MAXLENGTH = 200005, LOG_MAXLENGTH = 20;
+    int rmq[MAXLENGTH][LOG_MAXLENGTH];
+
+    void init(int* arr, int len) {
+        for (int i = 0; i < len; i++) rmq[i][0] = arr[i];
+        for (int j = 1; j < LOG_MAXLENGTH; j++)
+            for (int i = 0; i + (1 << j) <= len; i++)
+                rmq[i][j] = min(rmq[i][j - 1], rmq[i + (1 << (j - 1))][j - 1]);
+    }
+
+    int range_minimum_query(int l, int r) {
+        if (l > r) swap(l, r);
+        int k = 32 - __builtin_clz(r - l + 1) - 1;
+        return min(rmq[l][k], rmq[r - (1 << k) + 1][k]);
+    }
+};
+\end{lstlisting}
+
+\subsection{2.9 Union-find Set (Disjoint Set Union)}
+\begin{lstlisting}[language=C++]
+struct UnionFindSet {
+	vector<int> parent;
+	void init(int nn) {
+		parent.resize(nn + 1);
+		iota(parent.begin(), parent.end(), 0);
+	}
+	void merge(int x, int y) { parent[find(x)] = find(y); }
+	int find(int x) { return x == parent[x] ? x : parent[x] = find(parent[x]); }
+	bool together(int x, int y) { return find(x) == find(y); }
+};
+\end{lstlisting}
+
+\section{3. Methodology}
+
+\subsection{3.1 Recursive: Hanoi}
+\begin{lstlisting}[language=C++]
+void hanoi(int n, char x, char y, char z) {
+    if (n == 1) printf("%d from %c to %c\n", n, x, z);
+    else {
+        hanoi(n-1, x, z, y);
+        printf("%d from %c to %c\n", n, x, z);
+        hanoi(n-1, y, x, z);
+    }
+}
+\end{lstlisting}
+
+\subsection{3.2 Dynamic Programming: LIS}
+Longest Increasing Subsequence in $O(N \log N)$ using binary search.
+\begin{lstlisting}[language=C++]
+vector<int> sequence;
+vector<int> lis(sequence.size() + 1, INT_MAX);
+for (int i = 0; i < sequence.size(); i++) {
+    int r = sequence[i];
+    auto ptr = lower_bound(begin(lis), end(lis), r);
+    *ptr = min(*ptr, r);
+}
+\end{lstlisting}
+
+\section{4. String}
+
+\subsection{4.1 KMP Algorithm}
+String pattern matching in $O(N + M)$ time complexity.
+\begin{lstlisting}[language=C++]
+#define HHH 10003
+int ne[HHH];
+
+int kmp(string& par, string& ori) {
+    ne[0] = -1;
+    for (int p = ne[0], i = 1; i < par.length(); i++) {
+        while (p >= 0 && par[p+1] != par[i]) p = ne[p];
+        if (par[p+1] == par[i]) p++;
+        ne[i] = p;
+    }
+    int match = 0;
+    for (int p = -1, q = 0; q < ori.length(); q++) {
+        while (p >= 0 && par[p+1] != ori[q]) p = ne[p];
+        if (par[p+1] == ori[q]) p++;
+        if (p + 1 == par.length()) { p = ne[p]; match++; }
+    }
+    return match;
+}
+\end{lstlisting}
+
+\subsection{4.3 Manacher's Algorithm}
+Finds the longest palindromic substring in $O(N)$ linear time.
+\begin{lstlisting}[language=C++]
+int dp[10003];
+int lengthLongestPalindromSubstring(string& s) {
+    memset(dp, 0, sizeof(dp));
+    int ans = 0, pivot = 1, len = s.length() * 2;
+    for (int i = 1; i < len; i++) {
+        int pBorder = pivot + dp[pivot], iBorder = i;
+        if (iBorder < pBorder && 2 * pivot - i > 0) {
+            dp[i] = dp[2*pivot-i];
+            iBorder = min(pBorder, i + dp[i]);
+        }
+        if (iBorder >= pBorder) {
+            int j = iBorder + (iBorder % 2 ? 2 : 1);
+            for (; j < len && 2*i-j > 0 && s[j/2] == s[(2*i-j)/2]; j += 2);
+            iBorder = j - 2; dp[i] = iBorder - i; pivot = i;
+        }
+        ans = max(ans, dp[i] + 1);
+    }
+    return ans;
+}
+\end{lstlisting}
+
+\section{5. Graph}
+
+\subsection{5.2 Minimum Spanning Tree}
+
+\subsubsection{5.2.1 Prim's Algorithm}
+$O((V + E) \log V)$ for finding MST using Priority Queue.
+\begin{lstlisting}[language=C++]
+vector<bool> added; vector<int> mindis;
+void mst() {
+    vector<bool>(n + 1, false).swap(added);
+    vector<int>(n + 1, INT_MAX).swap(mindis);
+    auto cmp = [](const Edge& a, const Edge& b) { return a.len > b.len; };
+    priority_queue<Edge, vector<Edge>, decltype(cmp)> near(cmp);
+    for (int ie : g[1]) { near.push(edge[ie]); mindis[edge[ie].to] = edge[ie].len; }
+    added[1] = true;
+    while (!near.empty()) {
+        Edge cur = near.top(); near.pop();
+        if(added[cur.to]) continue;
+        added[cur.to] = true;
+        for (int ie : g[cur.to]) {
+            int nx = edge[ie].to;
+            if (!added[nx] && mindis[nx] > edge[ie].len) {
+                mindis[nx] = edge[ie].len;
+                near.push(edge[ie]);
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\subsubsection{5.2.2 Kruskal's Algorithm}
+$O(E \log E)$ MST using Disjoint-Set Union.
+\begin{lstlisting}[language=C++]
+UnionFindSet ufs;
+void mst() {
+    ufs.init(n);
+    vector<Edge> eee = edge;
+    sort(begin(eee), end(eee), [](const Edge& a, const Edge& b) { return a.len < b.len; });
+    int need = n - 1;
+    for (const auto& e : eee) {
+        if (!ufs.together(e.from, e.to)) {
+            ufs.merge(e.from, e.to);
+            if (!(--need)) break;
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{5.3 Shortest Path}
+
+\subsubsection{5.3.4 Dijkstra's Algorithm}
+Shortest path algorithm on non-negative weighted graphs in $O(E \log V)$.
+\begin{lstlisting}[language=C++]
+struct cmp {
+    bool operator()(pair<int, int> a, pair<int, int> b) { return a.first > b.first; }
+};
+void dijkstra(int s) {
+    priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> q;
+    q.push(make_pair(0, s)); dist[s] = 0;
+    while (!q.empty()) {
+        int cur = q.top().second; q.pop();
+        if (done[cur]) continue;
+        done[cur] = true;
+        for (int next : children[cur]) {
+            if (!done[next] && dist[next] > dist[cur] + edge[cur][next]) {
+                dist[next] = dist[cur] + edge[cur][next];
+                q.push(make_pair(dist[next], next));
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{5.4 Maximum Matching}
+
+\subsubsection{5.4.1.1 Hungarian Algorithm}
+Finds maximum cardinality matching in bipartite graphs in $O(V \cdot E)$.
+\begin{lstlisting}[language=C++]
+int peer[405]; bool went[405];
+bool match(int cur) {
+    for (int ie = last[cur]; ie != -1; ) {
+        const Edge& e = edge[ie]; ie = e.pre_edge; int to = e.to;
+        if (went[to]) continue;
+        went[to] = true;
+        if (peer[to] == -1 || match(peer[to])) {
+            peer[to] = cur; peer[cur] = to;
+            return true;
+        }
+    }
+    return false;
+}
+int bipartite_match() {
+    fill(peer, peer + nv, -1); int ans = 0;
+    for (int i = 0; i < nv; i++) {
+        if (last[i] == -1 || peer[i] != -1) continue;
+        fill(went, went + nv, false);
+        if (match(i)) ans++;
+    }
+    return ans;
+}
+\end{lstlisting}
+
+\subsubsection{5.4.2.1 Blossom Algorithm}
+Maximum matching on general non-bipartite graphs.
+\begin{lstlisting}[language=C++]
+const int NMax = 230;
+int Next[NMax], spouse[NMax], belong[NMax], Q[NMax], bot, mark[NMax], visited[NMax];
+vector<int> E[NMax]; int N;
+
+int findb(int a) { return belong[a] == a ? a : belong[a] = findb(belong[a]); }
+void together(int a,int b) {
+    a = findb(a); b = findb(b);
+    if (a != b) belong[a] = b;
+}
+
+int findLCA(int x,int y) {
+    static int t = 0; t++;
+    while (1) {
+        if (x != -1) {
+            x = findb(x);
+            if (visited[x] == t) return x;
+            visited[x] = t;
+            x = (spouse[x] != -1) ? Next[spouse[x]] : -1;
+        }
+        swap(x,y);
+    }
+}
+
+void goup(int a,int p) {
+    while (a != p) {
+        int b = spouse[a], c = Next[b];
+        if (findb(c) != p) Next[c] = b;
+        if (mark[b] == 2) mark[Q[bot++] = b] = 1;
+        if (mark[c] == 2) mark[Q[bot++] = c] = 1;
+        together(a,b); together(b,c); a = c;
+    }
+}
+
+void findaugment(int s) {
+    for (int i = 0; i < N; i++) Next[i] = -1, belong[i] = i, mark[i] = 0, visited[i] = -1;
+    Q[0] = s; bot = 1; mark[s] = 1;
+    for (int head = 0; spouse[s] == -1 && head < bot; head++) {
+        int x = Q[head];
+        for (int y : E[x]) {
+            if (spouse[x] != y && findb(x) != findb(y) && mark[y] != 2) {
+                if (mark[y] == 1) {
+                    int p = findLCA(x,y);
+                    if (findb(x) != p) Next[x] = y;
+                    if (findb(y) != p) Next[y] = x;
+                    goup(x,p); goup(y,p);
+                } else if (spouse[y] == -1) {
+                    Next[y] = x;
+                    for (int j = y; j != -1; ) {
+                        int k = Next[j], l = spouse[k];
+                        spouse[j] = k; spouse[k] = j; j = l;
+                    }
+                    break;
+                } else {
+                    Next[y] = x;
+                    mark[Q[bot++] = spouse[y]] = 1; mark[y] = 2;
+                }
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\end{document}
