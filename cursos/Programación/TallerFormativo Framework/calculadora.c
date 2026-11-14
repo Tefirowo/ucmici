@@ -8,13 +8,14 @@ int sumar(int a, int b)
 
 int restar(int a, int b)
 {
-    /* ERROR intencionado: deberia ser a - b */
-    return a + b;
+    return a - b;
 }
 
 int dividir(int a, int b)
 {
-    /* ERROR intencionado: no se comprueba b == 0 */
+    if (b == 0) {
+        return -1;
+    }
     return a / b;
 }
 
