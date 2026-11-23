@@ -1,111 +1,198 @@
-# 👩‍💻 Hola, soy Stefa!
+<div align="center">
+<table width="100%" cellpadding="10" cellspacing="0" border="1" bgcolor="#c0c0c0">
+<tr>
+<td>
 
-**Ignacia Stephanie C.** · Estudiante de Ingeniería Civil Informática  
-🏛️ Universidad Católica del Maule · Talca, Chile  
-🐙 [@Tefirowo](https://github.com/Tefirowo)
+# Ignacia Stephanie C.
+
+**Repositorio académico de Ingeniería Civil Informática**
+
+`UCM · Talca · Chile`
+
+[GitHub](https://github.com/Tefirowo) |
+[Correo](mailto:ignacia.carrera@alumnos.ucm.cl) |
+[novahosting.cl](https://novahosting.cl)
+
+</td>
+</tr>
+</table>
+</div>
+
+<table width="100%" cellpadding="8" cellspacing="0" border="1">
+<tr>
+<td width="180" valign="top" bgcolor="#d9e8ff">
+
+**Navegación**
+
+- [Inicio](#inicio)
+- [Actividades](#actividades)
+- [Tarea 1.2 U3](#tarea-12-u3)
+- [Archivos](#estructura-de-archivos)
+- [Tecnologías](#tecnologias)
+- [Git](#git)
+- [Contacto](#contacto)
+
+</td>
+<td valign="top">
+
+<a name="inicio"></a>
+
+## Inicio
+
+Este repositorio reúne tareas, ejercicios y proyectos desarrollados durante
+la carrera de Ingeniería Civil Informática. Su propósito es conservar el
+trabajo académico, documentar avances y practicar control de versiones con
+Git y GitHub.
+
+Estudiante: **Ignacia Stephanie C.**<br>
+Universidad: **Universidad Católica del Maule**<br>
+Ciudad: **Talca, Chile**
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 🙋‍♀️ Sobre mí
+<a name="actividades"></a>
 
-Me llaman **Stefa**. Soy estudiante de Ingeniería Civil Informática en la UCM y me apasiona entender cómo funcionan las cosas por dentro, ya sea un programa, un microcontrolador o un circuito. Me gusta experimentar, construir y aprender haciendo.
+## Actividades
 
-Más allá del código, me interesan los proyectos donde el software se encuentra con el hardware: conectar un Arduino a algo que resuelva un problema real o simplemente que sea entretenido de explorar.
-
-Este repositorio es mi cuaderno digital durante la carrera: aquí guardo tareas, proyectos, experimentos y todo lo que voy aprendiendo, incluyendo el uso de **Git** mismo 🐱
-
----
-
-## 🎓 Mi carrera
-
-**Ingeniería Civil Informática** — UCM  
-📍 Campus San Miguel, Talca · Jornada Diurna  
-🎓 Grado: Licenciado(a) en Ciencias de la Ingeniería · Duración: 11 semestres
-
-La carrera cubre un amplio espectro tecnológico, con cursos que van desde fundamentos matemáticos hasta inteligencia artificial, pasando por desarrollo de software, redes, bases de datos y mucho más.
-
-### 📚 Malla curricular (resumen por año)
-
-| Año | Áreas principales |
-|-----|------------------|
-| 1°  | Matemáticas (álgebra, cálculo), Introducción a la programación, Física |
-| 2°  | Álgebra lineal, Estructura de datos, Programación orientada a objetos, Física II |
-| 3°  | Bases de datos, Sistemas operativos, Redes de computadores, Arquitectura de sistemas |
-| 4°  | Inteligencia artificial, Ingeniería de software, Gestión de proyectos TI, Seguridad informática |
-| 5°  | Especialización, Módulos integradores, Práctica profesional, Certificaciones, Titulación |
-
-> 📎 Malla oficial: [portal.ucm.cl](https://portal.ucm.cl/carreras/ingenieria-civil-informatica)
+| Curso | Actividad | Estado | Archivos |
+|---|---|:---:|---|
+| Taller de programación | Tarea 1.2 - Unidad 3 | Completa | [Código](./cursos/Programación/TallerFormativo%20Framework/Pruebas%20unitarias2/test_funciones.c) · [PDF](./cursos/Programación/TallerFormativo%20Framework/Pruebas%20unitarias2/documento_entrega.pdf) · [Ejecutable](./cursos/Programación/TallerFormativo%20Framework/Pruebas%20unitarias2/test_funciones.exe) |
+| Taller de programación | Tarea 1.1 - Unidad 3 | Disponible | [Carpeta](./cursos/Programación/TallerFormativo%20Framework/) |
+| Taller de programación | Ejercicios anteriores | Disponible | [Código](./cursos/Programación/) |
 
 ---
 
-## 🔬 Lo que me gusta hacer
+<a name="tarea-12-u3"></a>
 
-### 💻 Experimentos de informática
-Desde scripts pequeños hasta proyectos más elaborados, me gusta escribir código para resolver cosas concretas o simplemente para entender cómo funcionan las tecnologías por dentro.
+## Tarea 1.2 U3 - Pruebas unitarias en ANSI C
 
-### ⚡ Electrónica y Arduino
-Me llaman mucho la atención los proyectos que cruzan software con hardware. Con **Arduino** puedo hacer que el mundo físico responda a instrucciones digitales, y eso me parece fascinante. Sensores, LEDs, motores, pantallas... hay todo un universo por explorar.
+**Actividad:** Diseño e implementación de pruebas para una función pura y dos
+funciones con efectos secundarios.
 
-### 🧪 La actitud experimental
-No le tengo miedo a que algo no funcione a la primera. Probar, fallar, ajustar y volver a intentar es parte del proceso, y lo disfruto.
+### Entregables
 
----
+| Archivo | Contenido |
+|---|---|
+| [test_funciones.c](./cursos/Programación/TallerFormativo%20Framework/Pruebas%20unitarias2/test_funciones.c) | Código corregido y harness de pruebas |
+| [documento_entrega.pdf](./cursos/Programación/TallerFormativo%20Framework/Pruebas%20unitarias2/documento_entrega.pdf) | Tabla de casos, justificación y reflexión |
+| [test_funciones.exe](./cursos/Programación/TallerFormativo%20Framework/Pruebas%20unitarias2/test_funciones.exe) | Programa compilado para Windows |
 
-## 📁 Estructura del repositorio
+### Funciones probadas
 
+| Función | Clasificación | Verificación |
+|---|---|---|
+| `maximo_tres` | Función pura | Valor de retorno |
+| `intercambiar` | Efecto secundario | Estado de ambas variables |
+| `invertir_arreglo` | Efecto secundario | Estado completo del arreglo |
+
+### Casos de prueba
+
+Los casos cubren valores normales, cero, valores iguales, números negativos,
+tamaños cero y uno, números extremos y arreglos de distintas longitudes.
+
+```text
+Pruebas pasadas: 19
+Pruebas fallidas: 0
+Estado: APROBADO
 ```
-ucmici/
-├── README.md                   ← estás aquí
-├── cursos/                     ← trabajos y apuntes por asignatura
-│   ├── intro-a-la-compu/
-│   └── intro-a-la-ingenieria/
-├── proyectos/                  ← proyectos personales o de la carrera
-├── arduino/                    ← experimentos con hardware
-└── apuntes/                    ← notas y recursos útiles
-```
 
----
-
-## 🌱 Aprendiendo Git
-
-Este repo también es parte de mi proceso de aprender a usar **Git y GitHub** de forma práctica. Algunos comandos que estoy practicando:
+### Compilación
 
 ```bash
-# Clonar el repositorio
-git clone https://github.com/Tefirowo/ucmici.git
+cd "cursos/Programación/TallerFormativo Framework/Pruebas unitarias2"
 
-# Ver el estado de los archivos
+gcc -Wall -Wextra -std=c89 -o test_funciones test_funciones.c
+test_funciones.exe
+```
+
+---
+
+<a name="estructura-de-archivos"></a>
+
+## Estructura de archivos
+
+```text
+ucmiciceo/
+|
+|-- README.md
+|-- uceeme.png
+|-- .gitignore
+|
+|-- cursos/
+|   `-- Programación/
+|       |-- TallerFormativo Framework/
+|       |   `-- Pruebas unitarias2/
+|       |       |-- test_funciones.c
+|       |       |-- test_funciones.exe
+|       |       `-- documento_entrega.pdf
+|       |
+|       |-- BACKTRACKRatoncio.c
+|       |-- Tarea 1.3-U2  .pdf
+|       |-- Tarea vector4.c
+|       `-- ...
+|
+|-- Proyectos/
+|   |-- musical.strudel
+|   |-- programacion-competitiva
+|   |-- test.c
+|   `-- test1/
+|
+|-- .vscode/
+`-- .venv/
+```
+
+**`cursos/`** contiene trabajos y apuntes organizados por asignatura.<br>
+**`Proyectos/`** contiene ejercicios y proyectos independientes.<br>
+**`.vscode/`** contiene configuración del editor.<br>
+**`.venv/`** contiene el entorno virtual local.
+
+---
+
+<a name="tecnologias"></a>
+
+## Tecnologías
+
+| Área | Herramientas |
+|---|---|
+| Programación | ANSI C, GCC |
+| Sistemas | Git, GitHub, Visual Studio Code |
+| Hardware | Arduino y electrónica |
+| Desarrollo web | HTML, CSS |
+| Entorno | Windows, Visual Studio Code |
+
+---
+
+<a name="git"></a>
+
+## Git
+
+```bash
+git clone https://github.com/Tefirowo/ucmiciceo.git
 git status
-
-# Agregar cambios al staging
 git add .
-
-# Hacer un commit
-git commit -m "mensaje descriptivo del cambio"
-
-# Subir cambios a GitHub
+git commit -m "Actualiza el repositorio"
 git push origin main
-
-# Actualizar desde el repositorio remoto
 git pull
 ```
 
 ---
 
-## 🚀 Proyecto personal
+<a name="contacto"></a>
 
-Actualmente estoy trabajando en **[novahosting.cl](https://novahosting.cl)**, un proyecto web personal que desarrollo de forma independiente.
+## Contacto
 
----
-
-## 📬 Contacto
-
-Si quieres colaborar, dar feedback o simplemente saludar:
-
-- 🐙 GitHub: [@Tefirowo](https://github.com/Tefirowo)
-- 📧 Correo: [ignacia.carrera@alumnos.ucm.cl](mailto:ignacia.carrera@alumnos.ucm.cl)
-- 🌐 Proyecto: [novahosting.cl](https://novahosting.cl)
+- GitHub: [github.com/Tefirowo](https://github.com/Tefirowo)
+- Correo: [ignacia.carrera@alumnos.ucm.cl](mailto:ignacia.carrera@alumnos.ucm.cl)
+- Proyecto personal: [novahosting.cl](https://novahosting.cl)
 
 ---
 
-*Hecho con 💜 y mucho café desde Talca*
+<div align="center">
+<font face="Courier New, monospace" size="2">
+FIN DEL DOCUMENTO · UCM · TALCA
+</font>
+</div>
