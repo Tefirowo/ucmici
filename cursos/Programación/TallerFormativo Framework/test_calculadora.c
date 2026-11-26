@@ -24,7 +24,7 @@ static void test_dividir(void)
     MT_ASSERT_EQ_INT(2, dividir(6, 3));   /* caso normal */
     MT_ASSERT_EQ_INT(0, dividir(0, 5));   /* cero entre algo */
     MT_ASSERT_EQ_INT(-2, dividir(-6, 3)); /* numerador negativo */
-    MT_ASSERT_EQ_INT(-1, dividir(5, 0));  /* division por cero -> error */
+    MT_ASSERT_EQ_INT(-1, dividir(5, 0));  /* contrato: divisor cero */
 }
 
 static void test_es_palindromo(void)

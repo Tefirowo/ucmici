@@ -346,7 +346,7 @@ void salida(int tri[N][3], int orden[N], int rot[N], int puntaje)
         return;
     }
 
-    sprintf(titulo, "Puntaje: %d", puntaje);
+    sprintf(titulo, "Puntaje final: %d", puntaje);
     armarSuma(suma, tri, orden, rot, puntaje);
 
     InitWindow(ANCHO, ALTO, "El juego de triangulos");

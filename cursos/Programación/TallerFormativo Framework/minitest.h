@@ -7,17 +7,12 @@
 extern int mt_total;
 extern int mt_fallos;
 
+void mt_assert_eq_int(int esperado, int obtenido, const char *archivo, int linea);
+
 #define MT_INIT() do { mt_total = 0; mt_fallos = 0; } while (0)
 
-#define MT_ASSERT_EQ_INT(esperado, obtenido)                          \
-    do {                                                              \
-        mt_total++;                                                   \
-        if ((esperado) != (obtenido)) {                               \
-            mt_fallos++;                                              \
-            printf("FALLO en %s:%d -> esperado %d, obtenido %d\n",    \
-                   __FILE__, __LINE__, (esperado), (obtenido));       \
-        }                                                             \
-    } while (0)
+#define MT_ASSERT_EQ_INT(esperado, obtenido) \
+    mt_assert_eq_int((esperado), (obtenido), __FILE__, __LINE__)
 
 #define MT_ASSERT_TRUE(cond)                                          \
     do {                                                              \
